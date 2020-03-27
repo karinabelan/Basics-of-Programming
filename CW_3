@@ -1,0 +1,28 @@
+/////////////////////Варіант 2, завдання 3//////////////////
+#include <iostream>
+using namespace std;
+int main() {
+    int Mas[1000];
+    int n;
+    cout << "Input n:\n";
+    cin >> n;
+    for (int i = 0; i < n; i++) {
+        cin >> Mas[i];
+    }
+    int min = Mas[0];
+    int sum_s = 0;
+    for (int i = 0; i < n; i++) {
+        if (min > Mas[i]) { min = Mas[i]; }
+        sum_s += Mas[i];
+    }
+    sum_s /= n;
+    cout << "Our result:";
+    for (int i = 0; i < n; i++) {
+        if ((Mas[i] < sum_s) & (Mas[i] > min)) {
+            cout << Mas[i] << " ";
+        }
+    }
+    cout << endl;
+    system("pause");
+    return 0;
+}
