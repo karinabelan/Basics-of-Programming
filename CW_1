@@ -1,0 +1,26 @@
+////////////////Варіант 2, завдання 2//////////////
+#include <iostream>
+#include <cmath>
+using namespace std;
+
+int main()
+{
+    int n = 0;
+    double sum = 0;
+    double sumsum = 1;
+    
+    cout << "Sum: 1+sin(1) + sin(2) +...+ sin(n))"<<endl;
+
+    cout << "Input n: ";
+    cin >> n;
+
+    for (int i = 1; i < n; i++)
+    {
+        sum += sin(i);
+        sumsum += sum;
+       
+    }
+    cout << "Sum:" << sumsum << endl;
+
+    return 0;
+}
