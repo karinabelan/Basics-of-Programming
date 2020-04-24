@@ -1,0 +1,92 @@
+////////варіант_2;завдання_3
+#include <iostream>
+using namespace std;
+
+int main()
+{
+    int size, size2;
+    cout << "size_1=  ";
+    cin >> size;
+    cout << "size_2= ";
+    cin >> size2;
+    int* ptr = new int[size];
+    int* ptr2 = new int[size2];
+    if (ptr == 0 || ptr2 == 0)
+    {
+       exit(1);
+    }
+    int size3 = 0; 
+    for (int i = 0; i < size; i++)
+    {
+         *ptr = rand() % 10;
+        if (*ptr == *ptr2)
+        {
+          size3++;
+        }
+        ptr++;
+    }
+    ptr -= size;
+
+
+    for (int i = 0; i < size2; i++)
+    {
+     *ptr2 = rand() % 10;
+     if (*ptr2 == *ptr)
+     {
+      size3++;
+     }
+     ptr2++;
+}
+    ptr2 -= size2;
+    for (int i = 0; i < size; i++)
+    {
+        cout << *ptr++ << '\t';
+    }
+    ptr -= size;
+    cout << "\n\n";
+    for (int i = 0; i < size2; i++)
+    {
+      cout << *ptr2++ << '\t';
+    }
+    ptr2 -= size2;
+    cout << endl;
+
+    int* ptr3 = new int[size3];
+    if (ptr3 == 0)
+    {
+      exit(1);
+    }
+    for (int i = 0; i < size; i++)
+    {
+     if (*ptr == *ptr2)
+    {
+       *ptr3 = *ptr;
+        ptr3++;
+    }
+    ptr++;
+    }
+    for (int i = 0; i < size2; i++)
+    {
+     if (*ptr2 == *ptr)
+     {
+        *ptr3 = *ptr2;
+        ptr3++;
+     }
+     ptr2++;
+    }
+    ptr -= size;
+    ptr2 -= size2;
+    ptr3 -= size3;
+    cout << "size_3= " << size3 << "\n\n";
+    for (int i = 0; i < size3; i++)
+    {
+    cout << *ptr3++ << '\t';
+ }
+cout << endl;
+ptr3 -= size3;
+
+delete[] ptr;
+delete[] ptr2;
+delete[] ptr3;
+return 0;
+}
