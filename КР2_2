@@ -1,0 +1,47 @@
+//////////варіант_2; завдання_2
+#include <iostream>
+using namespace std;
+
+int main() 
+{
+    int n;
+    cout >> "n= ";
+    cin >> n;
+    double a[n][n], b[n][n], ab[n][n], mu = 0;//a=b
+    for (int i = 0; i < n; i++)
+    {
+        for (int j = 0; j < n; j++) 
+        {
+            cin >> a[i][j];
+            b[j][i] = a[i][j];
+        }
+    }
+    for (int i = 0; i < n; i++) // матриця a = матриці b
+    {
+        for (int j = 0; j < n; j++) 
+        {
+            cout << a[i][j] << " ";
+        }
+        cout << endl;
+    for (int i = 0; i < n; i++)
+    {
+        for (int j = 0; j < n; j++) 
+        {
+            for (int p = 0; p < n; p++)
+            {
+                mu += a[i][p] * b[p][j];
+            }
+            ab[i][j] = mu;
+            mu = 0;
+        }
+    }
+    for (int i = 0; i < n; i++)
+    {
+        for (int j = 0; j < n; j++)
+        {
+            cout <<ab[i][j] << " ";
+        }
+        cout << endl;
+    }
+    return 0;
+}
