@@ -1,0 +1,114 @@
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+struct.h
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+#pragma once
+#include <iostream>
+#include <fstream>
+#include <cstring>
+using namespace std;
+struct Univ {
+    char Name_1[80];
+    char Name_2[80];
+    int cours;
+    char group[80];
+    char stud[80];
+};
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+name.txt
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+belan karina 3 pmp_1 bk
+hartovanets maria 4 pmp_2 bk
+zhornyak yulia 4 pmp_1 bk
+matviyv sofia 1 pmp_1 bk
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+sourse.cpp
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+#define _CRT_SECURE_NO_WARNINGS
+#include "struct.h"
+
+void sorted(Univ equa[10], int len) {
+    ofstream file;
+    file.open("out.txt");
+
+    for (int i = 0; i < len; ++i) {
+        for (int j = i; j < len; ++j) {
+            if (equa[i].age == equa[j].age && equa[i].amontStudent > equa[j].amontStudent) {
+                Univ temp = equa[i];
+                equa[i] = equa[j];
+                equa[j] = temp;
+            }
+            else if (equa[i].cours > equa[j].cours) {
+                Univ temp = equa[i];
+                equa[i] = equa[j];
+                equa[j] = temp;
+            }
+        }
+    }
+    for (int i = 0; i < len; i++) {
+        file << equa[i].Name_1 << "," << equa[i].Name_2 << "," << equa[i].cours << ", " < equa[i].group << ", " << equa[i].stud << equa[i].amontStudent << endl;
+
+    }
+    file.close();
+}
+
+
+int main()
+{
+    Univ univArr[10];
+    ifstream fin("name.txt");
+    int sizeStruct = 0;
+    char str[100];
+
+    try {
+        if (!fin) {
+            throw "name.txt couldn't be opened!";
+        }
+
+        while (fin.getline(str, 100))
+        {
+            char* pch;
+            pch = strtok(str, " ");
+            int j = 1;
+            while (pch != NULL)
+            {
+                switch (j)
+                {
+                case 1:
+                    strcpy(univArr[sizeStruct].Name_1, pch);
+                    j++;
+                    break;
+                case 2:
+                    strcpy(univArr[sizeStruct].Name_2, pch);
+                    j++;
+                    break;
+                case 3:
+                    univArr[sizeStruct].cours = atoi(pch);
+                    j++;
+                    break;
+                case 4:
+                    univArr[sizeStruct].group = atoi(pch);
+                    j++;
+                    break;
+                case 5:
+                    univArr[sizeStruct].stud = atoi(pch);
+                    j++;
+                    break;
+                case 4:
+                    univArr[sizeStruct].amontStudent = atoi(pch);
+                    j = 1;
+                    break;
+                default:
+                    break;
+                }
+                pch = strtok(NULL, " ");
+            }
+
+    return 0;
+}
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+out.txt
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+matviyv sofia 1 pmp_1 bk
+belan karina 3 pmp_1 bk
+zhornyak yulia 4 pmp_1 bk
+hartovanets maria 4 pmp_2 bk
